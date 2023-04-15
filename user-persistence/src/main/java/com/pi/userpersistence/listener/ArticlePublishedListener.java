@@ -28,10 +28,10 @@ public class ArticlePublishedListener {
     private final NotificationService notificationService;
 
     @KafkaListener(topics = "articles.published")
-    public String listens(final String in) {
-        log.info("Received Article: {}", in);
+    public String listens(final String input) {
+        log.info("Received Article: {}", input);
         try {
-            final Map<String, Object> payload = readJsonAsMap(in);
+            final Map<String, Object> payload = readJsonAsMap(input);
 
             final User user = userFromPayload(payload);
             final User persistedUser = userService.save(user);
@@ -49,9 +49,9 @@ public class ArticlePublishedListener {
                             .build());
 
         } catch(final InvalidMessageException ex) {
-            log.error("Invalid message received: {}", in);
+            log.error("Invalid message received: {}", input);
         }
-        return in;
+        return input;
     }
 
     private Map<String, Object> readJsonAsMap(final String json) {
