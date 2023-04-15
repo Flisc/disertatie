@@ -1,0 +1,11 @@
+GET http://localhost:8080/articles
+
+# response
+[
+  {
+    "id": "ca1cc4ca-7d9e-45b5-98e0-07c5ecdd3813",
+    "title": "art1",
+    "body": null,
+    "author": null
+  }
+]
