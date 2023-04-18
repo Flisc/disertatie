@@ -1,4 +1,4 @@
-package com.pi.articlepersistence.models;
+package pi.article.publisher.articlepublisher.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,22 +9,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "articles")
-public class Article {
+@Table(name="users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String body;
-    private Long author;
-
+    private String userName;
+    private String email;
+    private Integer age;
 }

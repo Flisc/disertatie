@@ -69,7 +69,7 @@ public class ArticlePublishedListener {
     private Article articleFromPayload(final Map<String, Object> payload) {
         final Integer authorId = (Integer) ((HashMap<String, Object>) payload.get("author")).get("id"); /* <- Don't do this in prod!!! :| */
         return Article.builder()
-                .id(payload.get("id").toString())
+                .id(Long.valueOf(payload.get("id").toString()))
                 .title(payload.get("title").toString())
                 .body(payload.get("body").toString())
                 .author(authorId.longValue())
