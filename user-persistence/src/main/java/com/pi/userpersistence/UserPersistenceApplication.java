@@ -21,8 +21,8 @@ public class UserPersistenceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(final String... args) throws Exception {
-		userService.save(User.builder().userName("user1").build());
-		userService.save(User.builder().userName("user2").build());
-		userService.save(User.builder().userName("user3").build());
+		// userService.save(User.builder().userName("user1").build());
+		// userService.save(User.builder().userName("user2").build());
+		// userService.save(User.builder().userName("user3").build());
 	}
 }

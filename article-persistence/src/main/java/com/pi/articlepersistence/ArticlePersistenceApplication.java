@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
-//@EnableKafka
+@EnableKafka
 public class ArticlePersistenceApplication implements CommandLineRunner {
 
     @Autowired
@@ -20,9 +21,9 @@ public class ArticlePersistenceApplication implements CommandLineRunner {
 
     @Override
     public void run(final String... args) throws Exception {
-       articleService.save(Article.builder().title("art1").build());
-       articleService.save(Article.builder().title("art2").build());
-       articleService.save(Article.builder().title("art3").build());
+        // articleService.save(Article.builder().title("art1").build());
+        // articleService.save(Article.builder().title("art2").build());
+        // articleService.save(Article.builder().title("art3").build());
     }
 
 }
