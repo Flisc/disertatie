@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 @Builder
 public class KafkaConfigProps {
 
+    public String getTopic() {
+        return topic;
+    }
+
     private String topic;
 
 }

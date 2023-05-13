@@ -12,7 +12,7 @@
 	<artifactId>article-publisher</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>article-publisher</name>
-	<description>article-publisher</description>
+	<description>article-publisher to Kafka</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -25,7 +25,11 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -45,6 +49,10 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>

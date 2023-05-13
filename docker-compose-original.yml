@@ -28,35 +28,32 @@ services:
 
   bookpublisher:
     build: ./article-publisher
-    container_name: bookpublisher
+    container_name: articlepublisher
     depends_on:
       - broker
     environment:
-      SPRING_PROFILES_ACTIVE: 'production'
       PI_KAFKA_TOPIC: 'articles.published'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
   bookpersistence:
     build: ./article-persistence
-    container_name: bookpersistence
+    container_name: articlepersistence
     depends_on:
       - broker
     ports:
       - "8181:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: 'production'
       PI_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
-  authorpersistence:
+  userpersistence:
     build: ./user-persistence
-    container_name: authorpersistence
+    container_name: userpersistence
     depends_on:
       - broker
     ports:
       - "8282:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: 'production'
       PI_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
@@ -68,6 +65,5 @@ services:
     ports:
       - "8383:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: 'production'
-      DEVTIRO_KAFKA_TOPIC: 'notification.created'
+      PI_KAFKA_TOPIC: 'notification.created'
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'

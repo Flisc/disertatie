@@ -3,6 +3,7 @@ package pi.article.publisher.articlepublisher.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import pi.article.publisher.articlepublisher.config.KafkaConfigProps;
@@ -10,7 +11,6 @@ import pi.article.publisher.articlepublisher.exceptions.ArticlePublishException;
 import pi.article.publisher.articlepublisher.models.Article;
 
 @Service
-@AllArgsConstructor
 public class KafkaArticlePublisherService implements ArticlePublisherService {
 
     private final ObjectMapper objectMapper;
@@ -18,6 +18,13 @@ public class KafkaArticlePublisherService implements ArticlePublisherService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     private final KafkaConfigProps kafkaConfigProps;
+
+    @Autowired
+    public KafkaArticlePublisherService(ObjectMapper objectMapper, KafkaTemplate<String, String> kafkaTemplate, KafkaConfigProps kafkaConfigProps) {
+        this.objectMapper = objectMapper;
+        this.kafkaTemplate = kafkaTemplate;
+        this.kafkaConfigProps = kafkaConfigProps;
+    }
 
     @Override
     public void publish(final Article article) {

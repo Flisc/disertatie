@@ -4,12 +4,12 @@ CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807
 
 CREATE TABLE "users" (
                          "id" bigint DEFAULT nextval('users_id_seq') NOT NULL,
-                         "userName" text,
+                         "user_name" text,
                          "email" text,
                          "age" integer,
                          CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
-INSERT INTO "authors" ("id", "email", "userName", "age") VALUES
+INSERT INTO "users" ("id", "email", "user_name", "age") VALUES
                                                 (1,	    'user0@email.com', 'Abigail Rose',	80),
                                                 (2,	    'user1@email.com', 'Adam Parker',	36),
                                                 (3,	    'user2@email.com', 'Adeline Rivers',	49),
@@ -122,7 +122,7 @@ CREATE TABLE "articles" (
                             "author_id" bigint,
                             CONSTRAINT "articles_pkey" PRIMARY KEY ("id")
 );
-INSERT INTO "books" ("id", "title", "author_id") VALUES
+INSERT INTO "articles" ("id", "title", "body", "author_id") VALUES
                                                              (1, '978-1-2345-6789-0',	'The Shadow in the Attic',	1),
                                                              (2, '978-1-2345-6789-1',	'Beyond the Horizon',	2),
                                                              (3, '978-1-2345-6789-2',	'The Last Ember',	3),
