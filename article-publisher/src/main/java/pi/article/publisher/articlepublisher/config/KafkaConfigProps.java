@@ -19,6 +19,10 @@ public class KafkaConfigProps {
         return topic;
     }
 
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     private String topic;
 
 }

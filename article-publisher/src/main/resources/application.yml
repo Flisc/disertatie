@@ -4,7 +4,9 @@ pi:
 
 spring:
   kafka:
-       bootstrap-servers: localhost:9092
+#    consumer:
+#      group-id=articles
+    bootstrap-servers: localhost:9092
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
   datasource:
