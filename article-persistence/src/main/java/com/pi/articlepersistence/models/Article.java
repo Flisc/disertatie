@@ -1,18 +1,11 @@
 package com.pi.articlepersistence.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
@@ -27,4 +20,11 @@ public class Article {
     private String body;
     private Long author;
 
+    @Builder
+    public Article(Long id, String title, String body, Long author) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
 }

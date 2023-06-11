@@ -68,7 +68,7 @@ public class ArticlePublishedListener {
      * 	      Implemented in this way for brevity.
      */
     private User userFromPayload(final Map<String, Object> payload) {
-        final Map<String, Object> authorMap = (HashMap<String, Object>) payload.get("user");
+        final Map<String, Object> authorMap = (HashMap<String, Object>) payload.get("author_id");
         return User.builder()
                 .id(((Integer)authorMap.get("id")).longValue())
                 .userName(authorMap.get("userName").toString())

@@ -22,12 +22,8 @@ public class ArticlePublisherJob {
         this.articlePublisherService = articlePublisherService;
     }
 
-    @Scheduled(cron = "0/10 * * * * *")
-    public void publishBook() {
-//        StreamSupport
-//                .stream(articleRepository.findAll().spliterator(), false)
-//                .filter(article -> article.getId().equals(counter))
-//                .collect(Collectors.toList())
+    @Scheduled(cron = "0/15 * * * * *")
+    public void publishArticle() {
         articleRepository.findById(counter).ifPresentOrElse(article -> {
             counter += 1L;
             articlePublisherService.publish(article);

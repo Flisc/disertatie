@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS "users";
-DROP SEQUENCE IF EXISTS users_id_seq;
-CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+-- DROP SEQUENCE IF EXISTS users_id_seq;
+-- CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "users" (
                          "id" bigint DEFAULT nextval('users_id_seq') NOT NULL,
@@ -112,8 +112,8 @@ INSERT INTO "users" ("id", "email", "user_name", "age") VALUES
                                                 (100,	'user99@email.com', 'Rachel Wilson',	38);
 
 DROP TABLE IF EXISTS "articles";
-DROP SEQUENCE IF EXISTS article_id_seq;
-CREATE SEQUENCE article_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+-- DROP SEQUENCE IF EXISTS article_id_seq;
+-- CREATE SEQUENCE article_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "articles" (
                             "id" text NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE "articles" (
                             "author_id" bigint,
                             CONSTRAINT "articles_pkey" PRIMARY KEY ("id")
 );
-INSERT INTO "articles" ("id", "title", "body", "author_id") VALUES
+INSERT INTO "articles" ("id", "body", "title", "author_id") VALUES
                                                              (1, '978-1-2345-6789-0',	'The Shadow in the Attic',	1),
                                                              (2, '978-1-2345-6789-1',	'Beyond the Horizon',	2),
                                                              (3, '978-1-2345-6789-2',	'The Last Ember',	3),
