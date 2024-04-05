@@ -9,3 +9,5 @@ CREATE TABLE "users" (
                            "age" integer,
                            CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
+INSERT INTO "users" ("email", "userName", "age")
+VALUES ('user0@email.com', 'Abigail Rose', 80);

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
-@EnableKafka
+//@EnableKafka
 public class UserPersistenceApplication implements CommandLineRunner {
 
 	@Autowired
@@ -21,8 +21,9 @@ public class UserPersistenceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(final String... args) throws Exception {
-		// userService.save(User.builder().userName("user1").build());
-		// userService.save(User.builder().userName("user2").build());
-		// userService.save(User.builder().userName("user3").build());
+//		 userService.save(User.builder().userName("user1").build());
+//		 userService.save(User.builder().userName("user2").build());
+//		 userService.save(User.builder().userName("user3").build());
+		 userService.listUsers().forEach(user -> { System.out.println(user.getEmail());});
 	}
 }

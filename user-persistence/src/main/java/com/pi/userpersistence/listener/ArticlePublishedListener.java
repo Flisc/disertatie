@@ -27,7 +27,7 @@ public class ArticlePublishedListener {
 
     private final NotificationService notificationService;
 
-    @KafkaListener(topics = "articles.published")
+//    @KafkaListener(topics = "articles.published")
     public String listens(final String input) {
         log.info("Received Article: {}", input);
         try {
