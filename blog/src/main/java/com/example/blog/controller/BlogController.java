@@ -24,15 +24,16 @@ public class BlogController {
         return userService.listUsers();
     }
 
-    @GetMapping("/test")
-    public void test() throws Exception {
-        userService.test();
-    }
-
     @GetMapping("/publish_Article")
     public ResponseEntity<String> publishArticle() throws Exception {
         blogService.publishArticle();
         return ResponseEntity.ok("Publish Article");
+    }
+
+    @GetMapping("/subscribeToAuthor")
+    public ResponseEntity<String> subscribeToAuthor() throws Exception {
+        blogService.subscribeToAuthor();
+        return ResponseEntity.ok("subscribeToAuthor");
     }
 
     @GetMapping("/register_user")
@@ -44,5 +45,10 @@ public class BlogController {
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
         return ResponseEntity.ok("Hello");
+    }
+
+    @GetMapping("/test")
+    public void test() throws Exception {
+        userService.test();
     }
 }

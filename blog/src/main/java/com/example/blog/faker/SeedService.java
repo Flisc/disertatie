@@ -7,6 +7,7 @@ import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -56,6 +57,7 @@ public class SeedService {
         return User.builder()
                 .email(faker.internet().emailAddress())
                 .userName(faker.name().username())
+                .subscribedAuthors(new HashSet<>())
                 .build();
     }
 

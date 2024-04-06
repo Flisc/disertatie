@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +27,5 @@ public class User {
 
     private String userName;
     private String email;
-//    private Integer age;
-    //TODO: subscribed authors
+    private Set<Long> subscribedAuthors = new HashSet<>();
 }
