@@ -17,9 +17,8 @@ public class SeedService {
     private static final Faker faker = new Faker();
     private final UserRepository userRepository;
 
-    public SeedService(UserRepository userRepository, ArticleRepository articleRepository) {
+    public SeedService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.articleRepository = articleRepository;
     }
 
     /**
