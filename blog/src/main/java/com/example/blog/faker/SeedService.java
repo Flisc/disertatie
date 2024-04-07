@@ -2,6 +2,7 @@ package com.example.blog.faker;
 
 import com.example.blog.model.Article;
 import com.example.blog.model.User;
+import com.example.blog.repository.ArticleRepository;
 import com.example.blog.repository.UserRepository;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,15 @@ public class SeedService {
     private static final Faker faker = new Faker();
     private final UserRepository userRepository;
 
-    public SeedService(UserRepository userRepository) {
+    public SeedService(UserRepository userRepository, ArticleRepository articleRepository) {
         this.userRepository = userRepository;
+        this.articleRepository = articleRepository;
     }
 
     /**
      * .isMultiselectAllowed(faker.bool().bool())
      * .description(faker.lorem().sentence(20, 100))
      * .title(faker.lorem().sentence(5, 10))
-     * .options(options)
      * faker.number().numberBetween(1, 3);
      * faker.crypto().sha512()
      */
@@ -32,7 +33,7 @@ public class SeedService {
     public static Article article(final List<User> authors) {
         return Article.builder()
                 .title(faker.book().title())
-                .body(faker.lorem().sentence(10, 50))
+                .body(faker.lorem().sentence(10, 20))
                 .published(LocalDateTime.now())
                 .author_id(authors.get(faker.random().nextInt(authors.size())).getId())
                 .build();

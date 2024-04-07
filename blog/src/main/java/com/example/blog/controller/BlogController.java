@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
+import com.example.blog.model.Article;
 import com.example.blog.model.User;
+import com.example.blog.service.ArticleService;
 import com.example.blog.service.BlogServiceImpl;
 import com.example.blog.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +16,21 @@ public class BlogController {
 
     private final UserService userService;
     private final BlogServiceImpl blogService;
-    public BlogController(final UserService userService, BlogServiceImpl blogService) {
+    private final ArticleService articleService;
+    public BlogController(final UserService userService, BlogServiceImpl blogService, ArticleService articleService) {
         this.userService = userService;
         this.blogService = blogService;
+        this.articleService = articleService;
     }
 
     @GetMapping("/users")
     public List<User> listUsers() {
         return userService.listUsers();
+    }
+
+    @GetMapping("/articles")
+    public List<Article> listArticles() {
+        return articleService.listArticles();
     }
 
     @GetMapping("/publish_Article")

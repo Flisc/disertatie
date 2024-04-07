@@ -27,7 +27,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   articlepublisher:
-    build: ./article-publisher
+    build: article-publisher
     container_name: articlepublisher
     depends_on:
       - broker
@@ -36,7 +36,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
   articlepersistence:
-    build: ./article-persistence
+    build: article-persistence
     container_name: articlepersistence
     depends_on:
       - broker
@@ -58,7 +58,7 @@ services:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
 
   notifications:
-    build: ./notifications
+    build: notifications
     container_name: notifications
     depends_on:
       - broker
