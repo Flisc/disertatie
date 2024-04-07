@@ -1,9 +1,9 @@
-package com.example.blog.service.impl;
+package org.example.articleservice.service.impl;
 
-import com.example.blog.model.Article;
-import com.example.blog.repository.ArticleRepository;
-import com.example.blog.service.ArticleService;
+import org.example.articleservice.repository.ArticleRepository;
+import org.example.articleservice.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
+import org.example.articleservice.model.Article;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
