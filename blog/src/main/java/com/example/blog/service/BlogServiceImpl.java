@@ -38,7 +38,7 @@ public class BlogServiceImpl {
             }
         });
         notificationService.sendNotification(Notification.builder()
-                .message(String.format("Utilizatorii abonati la %s au fost notificati", currentUser.getUserName()))
+                .message(String.format("Utilizatorii abonati la [%s] au fost notificati", currentUser.getUserName()))
                 .timestamp(LocalDateTime.now())
                 .service("Blog service")
                 .build());

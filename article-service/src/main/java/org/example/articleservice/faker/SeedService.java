@@ -44,6 +44,15 @@ public class SeedService {
                 .build();
     }
 
+    public static Article article() {
+        return Article.builder()
+                .title(faker.book().title())
+                .body(faker.lorem().sentence(10, 20))
+                .published(LocalDateTime.now())
+                .author_id(faker.random().nextInt(0, 100).longValue())
+                .build();
+    }
+
 //    public void populateUsers(final Integer noOfUsers) {
 //        for (int i = 0; i < noOfUsers; i++) {
 //            userRepository.save(randomUser());

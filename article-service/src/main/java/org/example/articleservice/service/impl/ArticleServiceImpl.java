@@ -1,5 +1,6 @@
 package org.example.articleservice.service.impl;
 
+import org.example.articleservice.faker.SeedService;
 import org.example.articleservice.repository.ArticleRepository;
 import org.example.articleservice.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,14 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> listArticles() {
         return articleRepository.findAll();
+    }
+
+    @Override
+    public void publishArticle() {
+        log.info("\n \t\t PUBLICARE ARTICOL --------------------");
+        Article article = articleRepository.save(SeedService.article());
+        // TODO: notify users in user service
+        // TODO: call notification  service.
     }
 
 }

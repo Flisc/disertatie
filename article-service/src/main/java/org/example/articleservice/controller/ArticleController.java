@@ -2,6 +2,7 @@ package org.example.articleservice.controller;
 
 import org.example.articleservice.model.Article;
 import org.example.articleservice.service.ArticleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +19,11 @@ public class ArticleController {
     @GetMapping()
     public List<Article> listArticles() {
         return articleService.listArticles();
+    }
+
+    @GetMapping("/publish_Article")
+    public ResponseEntity<String> publishArticle(){
+        articleService.publishArticle();
+        return ResponseEntity.ok("Publish Article");
     }
 }

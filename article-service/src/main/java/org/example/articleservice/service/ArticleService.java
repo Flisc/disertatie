@@ -10,4 +10,6 @@ public interface ArticleService {
 
     List<Article> listArticles();
 
+    void publishArticle();
+
 }
