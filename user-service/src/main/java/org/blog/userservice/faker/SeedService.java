@@ -4,12 +4,10 @@ package org.blog.userservice.faker;
 import com.github.javafaker.Faker;
 import org.blog.userservice.model.User;
 import org.blog.userservice.repository.UserRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 
-@Service
 public class SeedService {
 
     private static final Faker faker = new Faker();

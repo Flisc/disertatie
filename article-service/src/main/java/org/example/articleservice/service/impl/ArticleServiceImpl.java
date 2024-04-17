@@ -1,10 +1,12 @@
 package org.example.articleservice.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
+import org.blog.userservice.model.User;
+import org.blog.userservice.service.UserService;
 import org.example.articleservice.faker.SeedService;
+import org.example.articleservice.model.Article;
 import org.example.articleservice.repository.ArticleRepository;
 import org.example.articleservice.service.ArticleService;
-import lombok.extern.slf4j.Slf4j;
-import org.example.articleservice.model.Article;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +16,11 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final UserService userService;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, UserService userService) {
         this.articleRepository = articleRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -27,6 +31,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> listArticles() {
         return articleRepository.findAll();
+    }
+
+    @Override
+    public List<User> listUsers() {
+        return userService.listUsers();
     }
 
     @Override

@@ -52,7 +52,6 @@
 			<groupId>org.blog</groupId>
 			<artifactId>user-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<classifier>users</classifier>
 		</dependency>
 	</dependencies>
 

@@ -1,8 +1,6 @@
 package org.example.articleservice.controller;
 
 import org.blog.userservice.model.User;
-import org.blog.userservice.service.UserService;
-import org.blog.userservice.service.impl.UserServiceImpl;
 import org.example.articleservice.model.Article;
 import org.example.articleservice.service.ArticleService;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +12,11 @@ import java.util.List;
 @RestController("articles")
 public class ArticleController {
     private final ArticleService articleService;
-    private final UserServiceImpl userService;
+//    private final UserServiceImpl userService;
 
-    public ArticleController(ArticleService articleService, UserServiceImpl userService) {
+    public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
-        this.userService = userService;
+//        this.userService = userService;
     }
 
     @GetMapping()
@@ -26,9 +24,9 @@ public class ArticleController {
         return articleService.listArticles();
     }
 
-    @GetMapping("users")
-    public List<User> listUsers() {
-        return userService.listUsers();
+    @GetMapping("get_users")
+    public List<User> listUsersFromART() {
+        return articleService.listUsers();
     }
 
     @GetMapping("/publish_Article")
