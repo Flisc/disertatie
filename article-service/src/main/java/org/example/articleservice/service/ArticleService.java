@@ -13,6 +13,6 @@ public interface ArticleService {
 
     List<User> listUsers();
 
-    void publishArticle();
+    void publishArticle(Long userId);
 
 }

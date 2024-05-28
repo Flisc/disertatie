@@ -27,7 +27,7 @@ public class SeedService {
         return User.builder()
                 .email(faker.internet().emailAddress())
                 .userName(faker.name().username())
-                .subscribedAuthors(new HashSet<>())
+                .subscribedUsers(new HashSet<>())
                 .build();
     }
 

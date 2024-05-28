@@ -1,7 +1,7 @@
 package org.example.articleservice.faker;
 
-import org.example.articleservice.model.Article;
 import com.github.javafaker.Faker;
+import org.example.articleservice.model.Article;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,7 +36,7 @@ public class SeedService {
     public static Article article(final Long authorId) {
         return Article.builder()
                 .title(faker.book().title())
-                .body(faker.lorem().sentence(10, 50))
+                .body(faker.lorem().sentence(10, 15))
                 .published(LocalDateTime.now())
                 .author_id(authorId)
                 .build();

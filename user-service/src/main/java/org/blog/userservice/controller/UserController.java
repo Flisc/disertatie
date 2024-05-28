@@ -5,7 +5,10 @@ import org.blog.userservice.model.User;
 import org.blog.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController("users")
 public class UserController {
@@ -15,13 +18,19 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping()
-//    public List<User> listUsers() {
-//        return userService.listUsers();
-//    }
 
-    @GetMapping("/register_user")
+    @GetMapping("/users/create")
     public ResponseEntity<User> registerUser() {
         return ResponseEntity.ok(userService.save(SeedService.randomUser()));
+    }
+
+    @GetMapping("/users/all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userService.listUsers());
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ofNullable(userService.findUserById(id));
     }
 }

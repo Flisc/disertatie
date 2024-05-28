@@ -1,10 +1,10 @@
 package org.example.articleservice.controller;
 
-import org.blog.userservice.model.User;
 import org.example.articleservice.model.Article;
 import org.example.articleservice.service.ArticleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,19 +19,19 @@ public class ArticleController {
 //        this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping("articles/all")
     public List<Article> listArticles() {
         return articleService.listArticles();
     }
 
-    @GetMapping("get_users")
-    public List<User> listUsersFromART() {
-        return articleService.listUsers();
-    }
+//    @GetMapping("get_users")
+//    public List<User> listUsersFromART() {
+//        return articleService.listUsers();
+//    }
 
-    @GetMapping("/publish_Article")
-    public ResponseEntity<String> publishArticle(){
-        articleService.publishArticle();
+    @GetMapping("articles/create/{userId}")
+    public ResponseEntity<String> publishArticle(@PathVariable Long userId) {
+        articleService.publishArticle(userId);
         return ResponseEntity.ok("Publish Article");
     }
 }
