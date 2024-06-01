@@ -1,3 +1,4 @@
+import axios from 'axios';
 import express, {Request, Response} from 'express';
 import mongoose from 'mongoose';
 
@@ -44,24 +45,31 @@ app.get('/users/:currentUser/subscribe/:to', async (req: Request, res: Response)
     console.log(notification)
     storeNotification(notification)
     res.json(notification)
-    // try {
-    //     const response = await axios.get(`${USER_API}/all`);
-    //     res.json(response.data);
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(500).send('Something went wrong');
-    // }
+
 });
 
 app.get('/notifications/newArticle/:articleId/user/:userId', async (req: Request, res: Response) => {
     let userId = req.params.userId
     let articleId = req.params.articleId
+
     let notifRes = {
         to: `User: ${userId}`,
         message: `Utilizatorul [${userId}] a publicat un articol nou, art[${articleId}]`,
         date: new Date()
     }
-    console.log(notifRes)
+    let user = await getUserById(userId)
+    // @ts-ignore
+    if (user.subscribedUsers.length != 0) {
+        // @ts-ignore
+        user.subscribedUsers.forEach(usrId => {
+            console.log({
+                to: `User: ${usrId}`,
+                message: `Utilizatorul [${userId}] a publicat un articol nou, art[${articleId}]`,
+                date: new Date()
+            })
+        })
+    }
+    // console.log(notifRes)
     res.json(notifRes)
 });
 
@@ -73,6 +81,17 @@ app.get('/', async (req: Request, res: Response) => {
         res.status(500).send(err);
     }
 });
+
+async function getUserById(userId: any) {
+    try {
+        const response = await axios.get(`${USER_API}/${userId}`);
+        // console.log(response.data)
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        // res.status(500).send('Something went wrong');
+    }
+}
 
 app.listen(port, () => {
     console.log(`Notification Server is running on http://localhost:${port}`);

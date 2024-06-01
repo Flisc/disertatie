@@ -1,7 +1,18 @@
-###
 
-# USER API
+### ========================= USER API
+#GET USER BY ID
 GET http://localhost:8082/users/2;
 
-### ARTICLE API
+# GET ALL USERS
+###
+GET http://localhost:8082/users/all;
+
+# REGISTER USER
+###
+GET http://localhost:8082/users/create;
+
+###
+GET http://localhost:8082/users/3/subscribe/2
+
+### ========================= ARTICLE API
 GET http://localhost:8081/articles/create/2

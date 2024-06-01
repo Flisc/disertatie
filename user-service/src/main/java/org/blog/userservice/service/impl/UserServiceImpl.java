@@ -31,4 +31,20 @@ public class UserServiceImpl  implements UserService {
         Optional<User> user = userRepository.findById(id);
         return user.isPresent() ? user.get() : null;
     }
+
+    @Override
+    public String subscribeTo(Long currentUserId, Long subscribedUserId) {
+        Optional<User> currentUser = userRepository.findById(currentUserId);
+        Optional<User> subscribedUser = userRepository.findById(subscribedUserId);
+        if (!currentUser.isPresent()) {
+            return "Current user not found";
+        }
+        if (!subscribedUser.isPresent()) {
+            return "Subscribed user not found";
+        }
+        subscribedUser.get().getSubscribedUsers().add(currentUserId);
+        userRepository.save(subscribedUser.get());
+
+        return "Subscribed successfully";
+    }
 }

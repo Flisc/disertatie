@@ -33,4 +33,9 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return ResponseEntity.ofNullable(userService.findUserById(id));
     }
+
+    @GetMapping("/users/{currentUserId}/subscribe/{subscribedUserId}")
+    public ResponseEntity<String> subscribeTo(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) {
+        return ResponseEntity.ofNullable(userService.subscribeTo(currentUserId, subscribedUserId));
+    }
 }

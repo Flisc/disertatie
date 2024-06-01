@@ -9,4 +9,6 @@ public interface UserService {
     List<User> listUsers();
 
     User findUserById(Long id);
+
+    String subscribeTo(Long currentUserId, Long subscribedUserId);
 }

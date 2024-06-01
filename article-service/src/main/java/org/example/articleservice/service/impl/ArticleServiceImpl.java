@@ -48,7 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void publishArticle(final Long userId) {
-        log.info("\n \t\t -----------------PUBLICARE ARTICOL --------------------");
+        log.info("\n \t\t -----------------PUBLICARE ARTICOL [SERVICIU_ARTICOLE]--------------------");
         Article article = articleRepository.save(SeedService.article(userId));
 //        User author = userService.findUserById(userId);
         String reqURL = new StringBuilder()
