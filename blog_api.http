@@ -12,7 +12,11 @@ GET http://localhost:8082/users/all;
 GET http://localhost:8082/users/create;
 
 ###
-GET http://localhost:8082/users/3/subscribe/2
+GET http://localhost:8082/users/1/subscribe/2
 
-### ========================= ARTICLE API
+# ========================= ARTICLE API
+### CREATE ARTICLE
 GET http://localhost:8081/articles/create/2
+
+### ALL ARTICLES
+GET http://localhost:8083/articles/all
