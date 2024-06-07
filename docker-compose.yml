@@ -1,8 +1,13 @@
 ---
 version: '3'
 services:
-  monolit_blog:
-    build: ./blog
-    container_name: monolit_blog
+  articleservice:
+    build: ./article-service
+    container_name: article_service
     ports:
-      - "8084:8080"
+      - "8083:8081"
+  userservice:
+    build: ./user-service
+    container_name: user_service
+    ports:
+      - "8083:8082"
