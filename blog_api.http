@@ -14,9 +14,34 @@ GET http://localhost:8082/users/create;
 ###
 GET http://localhost:8082/users/1/subscribe/2
 
-# ========================= ARTICLE API
+### ========================= ARTICLE API
 ### CREATE ARTICLE
 GET http://localhost:8081/articles/create/2
 
 ### ALL ARTICLES
-GET http://localhost:8083/articles/all
+GET http://localhost:8081/articles/all
+
+### NOTIFICATION API
+GET http://localhost:3000/notifications/users/1/subscribe/2
+
+###
+GET http://localhost:3000/
+
+###
+GET http://localhost:3000/notifications/newArticle/:articleId/user/:userId
+
+
+### MONOLIT API
+GET http://localhost:8080/blog/articles
+
+###
+GET http://localhost:8080/blog/articles/new/1
+
+###
+GET http://localhost:8080/blog/users
+
+###
+GET http://localhost:8080/blog/1/subscribe/2
+
+###
+GET http://localhost:8080/blog/1/unSubscribe/2

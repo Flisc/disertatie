@@ -36,14 +36,14 @@ app.get('/addTestData', (req: Request, res: Response) => {
     insertTestData();
 });
 
-app.get('/users/:currentUser/subscribe/:to', async (req: Request, res: Response) => {
+app.get('/notifications/users/:currentUser/subscribe/:to', async (req: Request, res: Response) => {
     let notification = {
         to: 'Blog',
-        message: `Utilizatorul ${req.params.currentUser} s-a abonat la blogul utilizatorului ${req.params.to}`,
+        message: `Utilizatorul [${req.params.currentUser}] s-a abonat la blogul utilizatorului [${req.params.to}]`,
         date: new Date()
     }
     console.log(notification)
-    storeNotification(notification)
+    // storeNotification(notification)
     res.json(notification)
 
 });
@@ -93,10 +93,6 @@ async function getUserById(userId: any) {
     }
 }
 
-app.listen(port, () => {
-    console.log(`Notification Server is running on http://localhost:${port}`);
-});
-
 function insertTestData() {
     const testData = {
         to: 'User123',
@@ -120,3 +116,7 @@ function storeNotification(data: any) {
             console.error('Error inserting data', err);
         });
 }
+
+app.listen(port, () => {
+    console.log(`Notification Server is running on http://localhost:${port}`);
+});
