@@ -7,6 +7,7 @@ import com.example.blog.service.BlogServiceImpl;
 import com.example.blog.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,25 +24,31 @@ public class BlogController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/blog/users")
     public List<User> listUsers() {
         return userService.listUsers();
     }
 
-    @GetMapping("/articles")
+    @GetMapping("/blog/articles")
     public List<Article> listArticles() {
         return articleService.listArticles();
     }
 
-    @GetMapping("/publish_Article")
-    public ResponseEntity<String> publishArticle() throws Exception {
-        blogService.publishArticle();
+    @GetMapping("blog/articles/new/{userId}")
+    public ResponseEntity<String> publishArticle(@PathVariable Long userId) throws Exception {
+        blogService.publishArticle(userId);
         return ResponseEntity.ok("Publish Article");
     }
 
-    @GetMapping("/subscribeToAuthor")
-    public ResponseEntity<String> subscribeToAuthor() throws Exception {
-        blogService.subscribeToAuthor();
+    @GetMapping("blog/{currentUserId}/subscribe/{subscribedUserId}")
+    public ResponseEntity<String> subscribeToAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
+        blogService.subscribeToAuthor(currentUserId, subscribedUserId);
+        return ResponseEntity.ok("subscribeToAuthor");
+    }
+
+    @GetMapping("blog/{currentUserId}/unSubscribe/{subscribedUserId}")
+    public ResponseEntity<String> unSubscribeFromAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
+        blogService.unSubscribeFromAuthor(currentUserId, subscribedUserId);
         return ResponseEntity.ok("subscribeToAuthor");
     }
 

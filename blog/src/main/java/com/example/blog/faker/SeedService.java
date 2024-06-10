@@ -2,7 +2,6 @@ package com.example.blog.faker;
 
 import com.example.blog.model.Article;
 import com.example.blog.model.User;
-import com.example.blog.repository.ArticleRepository;
 import com.example.blog.repository.UserRepository;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
@@ -41,7 +40,7 @@ public class SeedService {
     public static Article article(final Long authorId) {
         return Article.builder()
                 .title(faker.book().title())
-                .body(faker.lorem().sentence(10, 50))
+                .body(faker.lorem().sentence(10, 10))
                 .published(LocalDateTime.now())
                 .author_id(authorId)
                 .build();

@@ -20,9 +20,10 @@ public class BlogServiceImpl {
     @Autowired
     private NotificationService notificationService;
 
-    public void publishArticle() throws Exception {
+    public void publishArticle(Long userId) throws Exception {
         log.info("\n \t\t PUBLICARE ARTICOL --------------------");
-        User currentUser = SeedService.randomUserFrom(userService.listUsers());
+        User currentUser = userService.listUsers().stream().filter(user -> user.getId() == userId).findFirst()
+                .orElseThrow(() -> new Exception("User not found"));
         Article article = articleService.save(SeedService.article(currentUser.getId()));
         userService.listUsers().forEach(user -> {
             if(user.getSubscribedAuthors().contains(currentUser.getId())) {
@@ -54,15 +55,37 @@ public class BlogServiceImpl {
                 .build());
     }
 
-    public void subscribeToAuthor() throws Exception {
+    public void subscribeToAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
         log.info("\n \t\t ABONARE LA AUTOR --------------------");
-        User currentUser = SeedService.randomUserFrom(userService.listUsers());
-        User author = SeedService.randomUserFrom(userService.listUsers());
+
+        User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
+                .orElseThrow(() -> new Exception("User not found"));
+        User author = userService.listUsers().stream().filter(user -> user.getId() == subscribedUserId).findFirst()
+                .orElseThrow(() -> new Exception("User not found"));
+
         currentUser.getSubscribedAuthors().add(author.getId());
         userService.save(currentUser);
 
         notificationService.sendNotification(Notification.builder()
-                .message("Utilizatorul [" + currentUser.getUserName() + "], s-a abonat la[" + author.getUserName() + "]")
+                .message("Utilizatorul [" + currentUser.getUserName() + "], s-a abonat la [" + author.getUserName() + "]")
+                .timestamp(LocalDateTime.now())
+                .service("Blog service")
+                .build());
+    }
+
+    public void unSubscribeFromAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
+        log.info("\n \t\t DEZABONARE --------------------");
+
+        User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
+                .orElseThrow(() -> new Exception("User not found"));
+        User author = userService.listUsers().stream().filter(user -> user.getId() == subscribedUserId).findFirst()
+                .orElseThrow(() -> new Exception("User not found"));
+
+        currentUser.getSubscribedAuthors().remove(author.getId());
+        userService.save(currentUser);
+
+        notificationService.sendNotification(Notification.builder()
+                .message("Utilizatorul [" + currentUser.getUserName() + "], s-a dezabonat de la [" + author.getUserName() + "]")
                 .timestamp(LocalDateTime.now())
                 .service("Blog service")
                 .build());
