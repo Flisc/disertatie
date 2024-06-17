@@ -28,4 +28,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
+    @Override
+    public Article getArticleById(Long id) {
+        return articleRepository.findById(id).orElseThrow();
+    }
+
 }

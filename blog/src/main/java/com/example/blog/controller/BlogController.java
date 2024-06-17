@@ -29,15 +29,26 @@ public class BlogController {
         return userService.listUsers();
     }
 
+    @GetMapping("/blog/users/new")
+    public ResponseEntity<String> registerUser() throws Exception {
+        blogService.registerUser();
+        return ResponseEntity.ok("Registered User Success");
+    }
+
     @GetMapping("/blog/articles")
     public List<Article> listArticles() {
         return articleService.listArticles();
     }
 
-    @GetMapping("blog/articles/new/{userId}")
+    @GetMapping("/blog/articles/{articleId}")
+    public Article getArticle(@PathVariable Long articleId) {
+        return articleService.getArticleById(articleId);
+    }
+
+    @GetMapping("/blog/articles/new/{userId}")
     public ResponseEntity<String> publishArticle(@PathVariable Long userId) throws Exception {
         blogService.publishArticle(userId);
-        return ResponseEntity.ok("Publish Article");
+        return ResponseEntity.ok("Published Article");
     }
 
     @GetMapping("blog/{currentUserId}/subscribe/{subscribedUserId}")
@@ -50,12 +61,6 @@ public class BlogController {
     public ResponseEntity<String> unSubscribeFromAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
         blogService.unSubscribeFromAuthor(currentUserId, subscribedUserId);
         return ResponseEntity.ok("subscribeToAuthor");
-    }
-
-    @GetMapping("/register_user")
-    public ResponseEntity<String> registerUser() throws Exception {
-        blogService.registerUser();
-        return ResponseEntity.ok("Register User");
     }
 
     @GetMapping("/hello")
