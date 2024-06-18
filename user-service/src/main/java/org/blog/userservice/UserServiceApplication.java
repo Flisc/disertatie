@@ -20,13 +20,12 @@ public class UserServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-        populateUsers(10);
+		populateUsers(1000);
 	}
 
 	public void populateUsers(final Integer noOfUsers) {
 		for (int i = 0; i < noOfUsers; i++) {
 			userRepository.save(SeedService.randomUser());
-            System.out.println("User " + i + " created");
 		}
 	}
 }

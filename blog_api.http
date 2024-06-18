@@ -1,34 +1,39 @@
 
-### ========================= USER API
-#GET USER BY ID
+### ========================= USER API: 8082
+### GET USER BY ID
 GET http://localhost:8082/users/2;
 
-# GET ALL USERS
-###
+### GET ALL USERS
 GET http://localhost:8082/users/all;
 
-# REGISTER USER
-###
+### REGISTER USER
 GET http://localhost:8082/users/create;
 
-###
-GET http://localhost:8082/users/1/subscribe/2
+### SUBSCRIBE TO A USER
+GET http://localhost:8082/users/3/subscribe/2
 
-### ========================= ARTICLE API
+
+# ========================= ARTICLE API: 8081
 ### CREATE ARTICLE
-GET http://localhost:8081/articles/create/2
+GET http://localhost:8083/articles/create/2
 
 ### ALL ARTICLES
-GET http://localhost:8081/articles/all
-
-### NOTIFICATION API
-GET http://localhost:3000/notifications/users/1/subscribe/2
+GET http://localhost:8083/articles/all
 
 ###
+GET http://localhost:8081/
+
+### GET ARTICLE BY ID
+GET http://localhost:8081/articles/2
+
+### ========================= NOTIFICATION API: 3000
+GET http://localhost:3000/notifications/users/3/subscribe/2
+
+### TEST
 GET http://localhost:3000/
 
-###
-GET http://localhost:3000/notifications/newArticle/:articleId/user/:userId
+### NEW ARTICLE NOTIFICATION
+GET http://localhost:3000/notifications/newArticle/1/user/2
 
 
 ### MONOLIT API
@@ -45,3 +50,6 @@ GET http://localhost:8080/blog/1/subscribe/2
 
 ###
 GET http://localhost:8080/blog/1/unSubscribe/2
+
+### ========================= DOCKER
+GET http://localhost:8082/users/all

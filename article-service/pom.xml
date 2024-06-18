@@ -48,12 +48,12 @@
 			<version>0.15</version>
 		</dependency>
 		<!--		TEST -->
-		<dependency>
-			<groupId>org.blog</groupId>
-			<artifactId>user-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-            <classifier>users</classifier>
-		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.blog</groupId>-->
+		<!--			<artifactId>user-service</artifactId>-->
+		<!--			<version>0.0.1-SNAPSHOT</version>-->
+		<!--            <classifier>users</classifier>-->
+		<!--		</dependency>-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>

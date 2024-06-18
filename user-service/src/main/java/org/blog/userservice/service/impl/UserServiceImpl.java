@@ -20,7 +20,8 @@ import java.util.Optional;
 @Slf4j
 public class UserServiceImpl  implements UserService {
     private final UserRepository userRepository;
-    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
+    private final String NOTIFICATION_API = "http://notifications:3000/notifications";
+//    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -72,8 +73,7 @@ public class UserServiceImpl  implements UserService {
             ObjectMapper objectMapper = new ObjectMapper();
             Notification notification = objectMapper.readValue(responseBody, Notification.class);
 
-//            final String payload = objectMapper.writeValueAsString(notification);
-            log.info("\n \t Notificare : {}", responseBody);
+            log.info("Notification message: " + notification.getMessage());
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Error parsing notification");
