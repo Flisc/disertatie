@@ -21,7 +21,7 @@ public class BlogServiceImpl {
     private NotificationService notificationService;
 
     public void publishArticle(Long userId) throws Exception {
-        log.info("\n \t\t PUBLICARE ARTICOL --------------------");
+        log.info("\n \t\t -------------------- PUBLICARE ARTICOL --------------------");
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == userId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
         Article article = articleService.save(SeedService.article(currentUser.getId()));
@@ -46,7 +46,7 @@ public class BlogServiceImpl {
     }
 
     public void registerUser() throws Exception {
-        log.info("\n \t\t INREGISTRARE UTILIZATOR NOU --------------------");
+        log.info("\n \t -------------------- INREGISTRARE UTILIZATOR NOU --------------------");
         User currentUser = userService.save(SeedService.randomUser());
         notificationService.sendNotification(Notification.builder()
                 .message("User ID[" + currentUser.getId() + "], Username[" + currentUser.getUserName() + "] creat cu success.")
@@ -56,7 +56,7 @@ public class BlogServiceImpl {
     }
 
     public void subscribeToAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
-        log.info("\n \t\t ABONARE LA AUTOR --------------------");
+        log.info("\n \t -------------------- ABONARE LA AUTOR --------------------");
 
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
@@ -74,7 +74,7 @@ public class BlogServiceImpl {
     }
 
     public void unSubscribeFromAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
-        log.info("\n \t\t DEZABONARE --------------------");
+        log.info("\n \t -------------------- DEZABONARE --------------------");
 
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));

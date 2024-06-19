@@ -46,7 +46,10 @@ GET http://localhost:8080/blog/articles/new/1
 GET http://localhost:8080/blog/users
 
 ###
-GET http://localhost:8080/blog/1/subscribe/2
+GET http://localhost:8080/blog/users/2
+
+###
+GET http://localhost:8084/blog/1/subscribe/2
 
 ###
 GET http://localhost:8080/blog/1/unSubscribe/2
