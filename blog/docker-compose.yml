@@ -3,6 +3,6 @@ version: '3'
 services:
   monolit_blog:
     build: ./
-    container_name: monolit_blog
+    container_name: monolit_blog_v1
     ports:
       - "8084:8080"
