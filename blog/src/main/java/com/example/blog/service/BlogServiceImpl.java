@@ -21,7 +21,7 @@ public class BlogServiceImpl {
     private NotificationService notificationService;
 
     public void publishArticle(Long userId) throws Exception {
-        log.info("\n \t\t -------------------- PUBLICARE ARTICOL --------------------");
+        System.out.println("\n \t\t -------------------- PUBLICARE ARTICOL --------------------");
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == userId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
         Article article = articleService.save(SeedService.article(currentUser.getId()));
@@ -46,7 +46,7 @@ public class BlogServiceImpl {
     }
 
     public void registerUser() throws Exception {
-        log.info("\n \t -------------------- INREGISTRARE UTILIZATOR NOU --------------------");
+        System.out.println("\n \t -------------------- INREGISTRARE UTILIZATOR NOU --------------------");
         User currentUser = userService.save(SeedService.randomUser());
         notificationService.sendNotification(Notification.builder()
                 .message("User ID[" + currentUser.getId() + "], Username[" + currentUser.getUserName() + "] creat cu success.")
@@ -56,7 +56,7 @@ public class BlogServiceImpl {
     }
 
     public void subscribeToAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
-        log.info("\n \t -------------------- ABONARE LA AUTOR --------------------");
+        System.out.println("\n \t --------------------  ABONARE LA BLOG  --------------------");
 
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
@@ -74,7 +74,7 @@ public class BlogServiceImpl {
     }
 
     public void unSubscribeFromAuthor(Long currentUserId, Long subscribedUserId) throws Exception {
-        log.info("\n \t -------------------- DEZABONARE --------------------");
+        System.out.println("\n \t -------------------- DEZABONARE --------------------");
 
         User currentUser = userService.listUsers().stream().filter(user -> user.getId() == currentUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
@@ -89,6 +89,11 @@ public class BlogServiceImpl {
                 .timestamp(LocalDateTime.now())
                 .service("Blog service")
                 .build());
+//        notificationService.sendNotification(Notification.builder()
+//                .message("Utilizatorul [" + currentUser.getUserName() + "], s-a dezabonat de la blogul tau.")
+//                .timestamp(LocalDateTime.now())
+//                .service("Blog service")
+//                .build());
     }
 
 
