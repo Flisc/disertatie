@@ -26,7 +26,7 @@ public class BlogServiceImpl {
                 .orElseThrow(() -> new Exception("User not found"));
         Article article = articleService.save(SeedService.article(currentUser.getId()));
         userService.listUsers().forEach(user -> {
-            if(user.getSubscribedAuthors().contains(currentUser.getId())) {
+            if (user.getSubscribedUsers().contains(currentUser.getId())) {
                 try {
                     notificationService.sendNotification(Notification.builder()
                             .message("Catre utilizatorul [" + user.getUserName() + "]\n. Autorul ["+ currentUser.getUserName()+"] a postat un articol nou: "+ article.getTitle())
@@ -63,8 +63,8 @@ public class BlogServiceImpl {
         User author = userService.listUsers().stream().filter(user -> user.getId() == subscribedUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
 
-        currentUser.getSubscribedAuthors().add(author.getId());
-        userService.save(currentUser);
+        author.getSubscribedUsers().add(currentUser.getId());
+        userService.save(author);
 
         notificationService.sendNotification(Notification.builder()
                 .message("Utilizatorul [" + currentUser.getUserName() + "], s-a abonat la [" + author.getUserName() + "]")
@@ -81,7 +81,7 @@ public class BlogServiceImpl {
         User author = userService.listUsers().stream().filter(user -> user.getId() == subscribedUserId).findFirst()
                 .orElseThrow(() -> new Exception("User not found"));
 
-        currentUser.getSubscribedAuthors().remove(author.getId());
+        currentUser.getSubscribedUsers().remove(author.getId());
         userService.save(currentUser);
 
         notificationService.sendNotification(Notification.builder()

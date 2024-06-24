@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface UserService {
     User save(User user);
+
     List<User> listUsers();
+
+    User findUserById(Long id);
 
     void test() throws Exception;
 }

@@ -29,6 +29,11 @@ public class BlogController {
         return userService.listUsers();
     }
 
+    @GetMapping("/blog/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ofNullable(userService.findUserById(id));
+    }
+
     @GetMapping("/blog/articles")
     public List<Article> listArticles() {
         return articleService.listArticles();

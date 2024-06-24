@@ -1,3 +1,11 @@
+### ========================= DEMO
+GET http://localhost:8080/blog/users/1/subscribe/2
+
+###
+GET http://localhost:8080/blog/users/3/subscribe/2
+
+###
+GET http://localhost:8080/blog/users/2
 
 ### ========================= USER API: 8082
 ### GET USER BY ID

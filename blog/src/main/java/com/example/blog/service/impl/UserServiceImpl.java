@@ -8,11 +8,11 @@ import com.example.blog.repository.ArticleRepository;
 import com.example.blog.repository.UserRepository;
 import com.example.blog.service.NotificationService;
 import com.example.blog.service.UserService;
-import org.example.articleservice.service.ArticleService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,6 +34,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.isPresent() ? user.get() : null;
     }
 
     @Override
