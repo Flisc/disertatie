@@ -50,7 +50,7 @@ public class BlogServiceImpl {
         System.out.println("\n \t -------------------- INREGISTRARE UTILIZATOR NOU --------------------");
         User currentUser = userService.save(SeedService.randomUser());
         notificationService.sendNotification(Notification.builder()
-                .message("User ID[" + currentUser.getId() + "], Username[" + currentUser.getUserName() + "] creat cu success.")
+                .message("Autor nou  ID[" + currentUser.getId() + "], Username[" + currentUser.getUserName() + "] creat cu success in cadrul blogului.")
                 .timestamp(LocalDateTime.now())
                 .service("Blog service")
                 .build());

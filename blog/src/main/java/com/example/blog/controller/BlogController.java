@@ -29,7 +29,7 @@ public class BlogController {
         return userService.listUsers();
     }
 
-    @GetMapping("/blog/users/new")
+    @GetMapping("/blog/users/create")
     public ResponseEntity<String> registerUser() throws Exception {
         blogService.registerUser();
         return ResponseEntity.ok("Registered User Success");
@@ -66,12 +66,6 @@ public class BlogController {
     public ResponseEntity<String> unSubscribeFromAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
         blogService.unSubscribeFromAuthor(currentUserId, subscribedUserId);
         return ResponseEntity.ok("subscribeToAuthor");
-    }
-
-    @GetMapping("/blog/users/create")
-    public ResponseEntity<String> registerUser() throws Exception {
-        blogService.registerUser();
-        return ResponseEntity.ok("Register User");
     }
 
     @GetMapping("/hello")
