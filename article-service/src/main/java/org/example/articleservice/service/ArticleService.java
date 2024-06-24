@@ -1,7 +1,6 @@
 package org.example.articleservice.service;
 
 
-import org.blog.userservice.model.User;
 import org.example.articleservice.model.Article;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface ArticleService {
 
     List<Article> listArticles();
 
-    List<User> listUsers();
+    Article getArticleById(Long id);
 
     void publishArticle(Long userId);
 

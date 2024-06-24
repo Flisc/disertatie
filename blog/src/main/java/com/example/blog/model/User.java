@@ -24,5 +24,5 @@ public class User {
     private String userName;
     private String email;
     @Builder.Default
-    private Set<Long> subscribedAuthors = new HashSet<>();
+    private Set<Long> subscribedUsers = new HashSet<>();
 }

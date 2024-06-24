@@ -24,14 +24,15 @@ public class ArticleController {
         return articleService.listArticles();
     }
 
-//    @GetMapping("get_users")
-//    public List<User> listUsersFromART() {
-//        return articleService.listUsers();
-//    }
 
     @GetMapping("articles/create/{userId}")
     public ResponseEntity<String> publishArticle(@PathVariable Long userId) {
         articleService.publishArticle(userId);
         return ResponseEntity.ok("Publish Article");
+    }
+
+    @GetMapping("articles/{articleId}")
+    public Article getArticle(@PathVariable Long articleId) {
+        return articleService.getArticleById(articleId);
     }
 }

@@ -21,7 +21,7 @@ public class ArticleServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(final String... args) {
-		populateArticles(20);
+		populateArticles(2000);
 	}
 
 	public void populateArticles(final Integer noOfArticles) {

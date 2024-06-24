@@ -20,7 +20,8 @@ import java.util.Optional;
 @Slf4j
 public class UserServiceImpl  implements UserService {
     private final UserRepository userRepository;
-    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
+    private final String NOTIFICATION_API = "http://notifications:3000/notifications";
+//    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -46,12 +47,16 @@ public class UserServiceImpl  implements UserService {
     public String subscribeTo(Long currentUserId, Long subscribedUserId) {
         Optional<User> currentUser = userRepository.findById(currentUserId);
         Optional<User> subscribedUser = userRepository.findById(subscribedUserId);
+        if (currentUserId == subscribedUserId) {
+            return "Utilizatorii trebuie sa fie diferiti !";
+        }
         if (currentUser.isEmpty()) {
-            return "Current user not found";
+            return "Utilizatorul curent nu poate fi gasit";
         }
         if (subscribedUser.isEmpty()) {
-            return "Subscribed user not found";
+            return "Utilizatorul tinta nu poate fi gasit";
         }
+
         subscribedUser.get().getSubscribedUsers().add(currentUserId);
         userRepository.save(subscribedUser.get());
 
@@ -62,24 +67,27 @@ public class UserServiceImpl  implements UserService {
                 .append("/subscribe/")
                 .append(subscribedUserId)
                 .toString();
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(reqURL))
                 .build();
+
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String responseBody = response.body();
             ObjectMapper objectMapper = new ObjectMapper();
             Notification notification = objectMapper.readValue(responseBody, Notification.class);
 
-//            final String payload = objectMapper.writeValueAsString(notification);
-            log.info("\n \t Notificare : {}", responseBody);
+            log.info("Notification message: " + notification.getMessage());
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Error parsing notification");
             e.printStackTrace();
         }
 
-        return "Subscribed successfully";
+        return String.format("Utilizatorul %s s-a abonat la blogul utilizatorului %s",
+                currentUser.get().getUserName(),
+                subscribedUser.get().getUserName());
     }
 }
