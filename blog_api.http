@@ -1,12 +1,19 @@
-### ========================= DEMO
-GET http://localhost:8080/blog/users/1/subscribe/2
+### ========================= DEMO_V1
+GET http://localhost:8089/blog/users/1/subscribe/2
 
 ###
-GET http://localhost:8080/blog/users/3/subscribe/2
+GET http://localhost:8089/blog/users/3/subscribe/2
 
 ###
-GET http://localhost:8080/blog/users/2
+GET http://localhost:8089/blog/users/3/unSubscribe/2
 
+###
+GET http://localhost:8089/blog/users/2
+
+### CREATE ARTICLE
+GET http://localhost:8089/blog/articles/create/2
+
+===========================================================================
 ### ========================= USER API: 8082
 ### GET USER BY ID
 GET http://localhost:8082/users/2;

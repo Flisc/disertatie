@@ -50,16 +50,16 @@ public class BlogController {
         return articleService.getArticleById(articleId);
     }
 
-    @GetMapping("/blog/articles/new/{userId}")
+    @GetMapping("/blog/articles/create/{userId}")
     public ResponseEntity<String> publishArticle(@PathVariable Long userId) throws Exception {
-        blogService.publishArticle(userId);
-        return ResponseEntity.ok("Published Article");
+        String res = blogService.publishArticle(userId);
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("blog/users/{currentUserId}/subscribe/{subscribedUserId}")
     public ResponseEntity<String> subscribeToAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
-        blogService.subscribeToAuthor(currentUserId, subscribedUserId);
-        return ResponseEntity.ok("subscribeToAuthor");
+        String res = blogService.subscribeToAuthor(currentUserId, subscribedUserId);
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("blog/users/{currentUserId}/unSubscribe/{subscribedUserId}")
