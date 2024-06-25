@@ -48,6 +48,18 @@ app.get('/notifications/users/:currentUser/subscribe/:to', async (req: Request, 
 
 });
 
+app.get('/notifications/users/:currentUser/unSubscribe/:to', async (req: Request, res: Response) => {
+    let notification = {
+        to: 'Blog',
+        message: `Utilizatorul [${req.params.currentUser}] s-a dezabonat la blogul utilizatorului [${req.params.to}]`,
+        date: new Date()
+    }
+    console.log(notification)
+    // storeNotification(notification)
+    res.json(notification)
+
+});
+
 app.get('/notifications/newArticle/:articleId/user/:userId', async (req: Request, res: Response) => {
     let userId = req.params.userId
     let articleId = req.params.articleId

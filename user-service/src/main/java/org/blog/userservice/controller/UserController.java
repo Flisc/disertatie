@@ -38,4 +38,9 @@ public class UserController {
     public ResponseEntity<String> subscribeTo(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) {
         return ResponseEntity.ofNullable(userService.subscribeTo(currentUserId, subscribedUserId));
     }
+
+    @GetMapping("/users/{currentUserId}/unSubscribe/{subscribedUserId}")
+    public ResponseEntity<String> unSubscribe(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) {
+        return ResponseEntity.ofNullable(userService.unSubscribeFromAuthor(currentUserId, subscribedUserId));
+    }
 }

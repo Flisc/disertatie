@@ -11,4 +11,6 @@ public interface UserService {
     User findUserById(Long id);
 
     String subscribeTo(Long currentUserId, Long subscribedUserId);
+
+    String unSubscribeFromAuthor(Long currentUserId, Long subscribedUserId);
 }

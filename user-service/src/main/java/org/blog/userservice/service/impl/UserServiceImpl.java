@@ -79,7 +79,55 @@ public class UserServiceImpl  implements UserService {
             ObjectMapper objectMapper = new ObjectMapper();
             Notification notification = objectMapper.readValue(responseBody, Notification.class);
 
-            log.info("Notification message: " + notification.getMessage());
+            System.out.println("Notification message: " + notification.getMessage());
+
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Error parsing notification");
+            e.printStackTrace();
+        }
+
+        return String.format("Utilizatorul %s s-a abonat la blogul utilizatorului %s",
+                currentUser.get().getUserName(),
+                subscribedUser.get().getUserName());
+    }
+
+    @Override
+    public String unSubscribeFromAuthor(Long currentUserId, Long subscribedUserId) {
+        Optional<User> currentUser = userRepository.findById(currentUserId);
+        Optional<User> subscribedUser = userRepository.findById(subscribedUserId);
+        if (currentUserId == subscribedUserId) {
+            return "Utilizatorii trebuie sa fie diferiti !";
+        }
+        if (currentUser.isEmpty()) {
+            return "Utilizatorul curent nu poate fi gasit";
+        }
+        if (subscribedUser.isEmpty()) {
+            return "Utilizatorul tinta nu poate fi gasit";
+        }
+
+        subscribedUser.get().getSubscribedUsers().remove(currentUserId);
+        userRepository.save(subscribedUser.get());
+
+        String reqURL = new StringBuilder()
+                .append(NOTIFICATION_API)
+                .append("/users/")
+                .append(currentUserId)
+                .append("/unSubscribe/")
+                .append(subscribedUserId)
+                .toString();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(reqURL))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String responseBody = response.body();
+            ObjectMapper objectMapper = new ObjectMapper();
+            Notification notification = objectMapper.readValue(responseBody, Notification.class);
+
+            System.out.println("Notification message: " + notification.getMessage());
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Error parsing notification");
