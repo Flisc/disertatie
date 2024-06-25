@@ -1,0 +1,9 @@
+1: 
+    C:\projects\faculta\master\disertatie\disertatie\article-service git:[microservices]
+    docker build -t articles .
+2: 
+    docker run -p 8083:8081 articles
+                  host_port -> container_port
+
+
+

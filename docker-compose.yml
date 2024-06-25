@@ -5,9 +5,23 @@ services:
     build: ./article-service
     container_name: article_service
     ports:
-      - "8083:8081"
+      - "8083:8080"
+    networks:
+      - my_network
   userservice:
     build: ./user-service
-    container_name: user_service
+    container_name: userservice
     ports:
-      - "8083:8082"
+      - "8082:8080"
+    networks:
+      - my_network
+  notifications:
+    container_name: notifications
+    build: ./notifications
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+networks:
+  my_network:
+    driver: bridge

@@ -29,7 +29,7 @@ public class BlogApplication implements CommandLineRunner {
 	public void run(final String... args) {
 //		userService.listUsers().forEach(user -> { System.out.println(user.getEmail()); });
 		seedService.populateUsers(500);
-		populateArticles(2000);
+		populateArticles(1000);
 	}
 
 	public void populateArticles(final Integer noOfArticles) {

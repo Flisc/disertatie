@@ -9,7 +9,7 @@ app.use(express.json());
 
 // MongoDB connection
 const mongoUri = 'mongodb+srv://flisc:fliscdb@cluster0.2eok4jh.mongodb.net/disertatie?retryWrites=true&w=majority&appName=Cluster0';
-const USER_API = 'http://localhost:8082/users';
+const USER_API = 'http://userservice:8080/users';
 mongoose.connect(mongoUri)
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch((err) => console.error('Could not connect to MongoDB Atlas', err));
@@ -69,6 +69,7 @@ app.get('/notifications/newArticle/:articleId/user/:userId', async (req: Request
             })
         })
     }
+    // storeNotification(notifRes)
     // console.log(notifRes)
     res.json(notifRes)
 });

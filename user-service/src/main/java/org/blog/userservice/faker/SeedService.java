@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import org.blog.userservice.model.User;
 import org.blog.userservice.repository.UserRepository;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class SeedService {
         return User.builder()
                 .email(faker.internet().emailAddress())
                 .userName(faker.name().username())
-                .subscribedUsers(new HashSet<>())
+                .subscribedUsers(new HashSet<>(Arrays.asList(faker.random().nextLong(1000))))
                 .build();
     }
 

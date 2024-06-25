@@ -2,8 +2,6 @@ package org.example.articleservice.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.blog.userservice.model.User;
-import org.blog.userservice.service.UserService;
 import org.example.articleservice.faker.SeedService;
 import org.example.articleservice.model.Article;
 import org.example.articleservice.model.Notification;
@@ -23,12 +21,13 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
-    private final UserService userService;
-    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
+    //    private final UserService userService;
+//    private final String NOTIFICATION_API = "http://localhost:3000/notifications";
+    private final String NOTIFICATION_API = "http://notifications:3000/notifications";
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, UserService userService) {
+    public ArticleServiceImpl(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
-        this.userService = userService;
+//        this.userService = userService;
     }
 
     @Override
@@ -42,9 +41,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<User> listUsers() {
-        return userService.listUsers();
+    public Article getArticleById(Long id) {
+        return articleRepository.findById(id).orElseThrow();
     }
+
 
     @Override
     public void publishArticle(final Long userId) {
@@ -68,7 +68,7 @@ public class ArticleServiceImpl implements ArticleService {
             ObjectMapper objectMapper = new ObjectMapper();
             Notification notification = objectMapper.readValue(responseBody, Notification.class);
 
-            System.out.println("Notification message: " + notification.getMessage());
+            log.info("Notification message: " + notification.getMessage());
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Error parsing notification");

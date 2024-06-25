@@ -29,33 +29,43 @@ public class BlogController {
         return userService.listUsers();
     }
 
+    @GetMapping("/blog/users/create")
+    public ResponseEntity<String> registerUser() throws Exception {
+        blogService.registerUser();
+        return ResponseEntity.ok("Registered User Success");
+    }
+
+    @GetMapping("/blog/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ofNullable(userService.findUserById(id));
+    }
+
     @GetMapping("/blog/articles")
     public List<Article> listArticles() {
         return articleService.listArticles();
     }
 
-    @GetMapping("blog/articles/new/{userId}")
+    @GetMapping("/blog/articles/{articleId}")
+    public Article getArticle(@PathVariable Long articleId) {
+        return articleService.getArticleById(articleId);
+    }
+
+    @GetMapping("/blog/articles/create/{userId}")
     public ResponseEntity<String> publishArticle(@PathVariable Long userId) throws Exception {
-        blogService.publishArticle(userId);
-        return ResponseEntity.ok("Publish Article");
+        String res = blogService.publishArticle(userId);
+        return ResponseEntity.ok(res);
     }
 
-    @GetMapping("blog/{currentUserId}/subscribe/{subscribedUserId}")
+    @GetMapping("blog/users/{currentUserId}/subscribe/{subscribedUserId}")
     public ResponseEntity<String> subscribeToAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
-        blogService.subscribeToAuthor(currentUserId, subscribedUserId);
-        return ResponseEntity.ok("subscribeToAuthor");
+        String res = blogService.subscribeToAuthor(currentUserId, subscribedUserId);
+        return ResponseEntity.ok(res);
     }
 
-    @GetMapping("blog/{currentUserId}/unSubscribe/{subscribedUserId}")
+    @GetMapping("blog/users/{currentUserId}/unSubscribe/{subscribedUserId}")
     public ResponseEntity<String> unSubscribeFromAuthor(@PathVariable Long currentUserId, @PathVariable Long subscribedUserId) throws Exception {
         blogService.unSubscribeFromAuthor(currentUserId, subscribedUserId);
         return ResponseEntity.ok("subscribeToAuthor");
-    }
-
-    @GetMapping("/register_user")
-    public ResponseEntity<String> registerUser() throws Exception {
-        blogService.registerUser();
-        return ResponseEntity.ok("Register User");
     }
 
     @GetMapping("/hello")

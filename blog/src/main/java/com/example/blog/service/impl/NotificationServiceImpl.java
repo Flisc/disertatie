@@ -22,7 +22,7 @@ public class NotificationServiceImpl implements NotificationService {
     public void sendNotification(Notification notification) throws Exception {
         try {
             final String payload = objectMapper.writeValueAsString(notification);
-            log.info("\n \t Notificare : {}", payload);
+            System.out.println(String.format("\n \t Notificare : %s", payload));
         } catch(final JsonProcessingException ex) {
             log.error("\n Notification creation error: {}", ex.getMessage());
             throw new Exception("Unable to publish notification", ex);
